@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertrips/button_purple.dart';
 
 class DescriptionPlace extends StatelessWidget{
 
@@ -103,9 +104,11 @@ class DescriptionPlace extends StatelessWidget{
     //Uniendo los Widget title_start con description
     final title_start_description = Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           title_starts,
-          description_place
+          description_place,
+          ButtonPurple("Navigate")
         ],
       ),
     );
