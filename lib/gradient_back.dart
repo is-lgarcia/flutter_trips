@@ -2,6 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GradienteBack extends StatelessWidget{
+
+  String title = "Popular";
+
+  GradienteBack(this.title);
+
   @override
   Widget build(BuildContext context) {
 
@@ -19,6 +24,16 @@ class GradienteBack extends StatelessWidget{
           tileMode: TileMode.clamp
         )
       ),
+      child: Text(
+        title,
+        style: TextStyle(
+          color: Colors.white,
+          fontSize: 30.0,
+          fontFamily: "Lato",
+          fontWeight: FontWeight.bold
+        ),
+      ),
+      alignment: Alignment(-0.9, -0.6),
     );
   }
 

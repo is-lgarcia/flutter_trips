@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertrips/gradient_back.dart';
 import 'package:fluttertrips/review_list.dart';
 
 import 'description_place.dart';
@@ -34,17 +35,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Trips'),
-        ),
-        body: ListView(
+        body: Stack(
             children: <Widget>[
-              Column(
+              ListView(
                 children: <Widget>[
                   DescriptionPlace('Duwili Ella', 4, descriptionDummy),
                   ReviewList()
                 ],
-              )
+              ),
+              GradienteBack("Popular"),
             ]
         ),
       ),
