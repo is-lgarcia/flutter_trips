@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertrips/flutter_trips_cupertino.dart';
-import 'package:fluttertrips/home_trip.dart';
-import 'package:fluttertrips/profile_trips.dart';
-import 'package:fluttertrips/search_trips.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/Place/ui/screens/home_trip.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/User/ui/screens/profile_trips.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/Place/ui/screens/search_trips.dart';
 
 class FlutterTrips extends StatefulWidget{
   @override

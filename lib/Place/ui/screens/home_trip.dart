@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertrips/review_list.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/Place/ui/widgets/review_list.dart';
 
-import 'description_place.dart';
+import '../widgets/description_place.dart';
 import 'headet_appbar.dart';
-import 'main.dart';
+import '../../../main.dart';
 
 class Hometrips extends StatelessWidget{
   @override

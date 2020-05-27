@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertrips/floating_action_button_green.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/widgets/floating_action_button_green.dart';
 
 class CardImage extends StatelessWidget{
 

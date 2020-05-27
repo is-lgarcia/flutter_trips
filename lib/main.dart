@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertrips/gradient_back.dart';
-import 'package:fluttertrips/headet_appbar.dart';
-import 'package:fluttertrips/review_list.dart';
+import 'package:fluttertrips/User/bloc/bloc_user.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
-import 'description_place.dart';
 import 'flutter_trips.dart';
 
 void main() {
@@ -25,13 +23,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: FlutterTrips()
+    return BlocProvider(
+        child: MaterialApp(
+            title: 'My Trips',
+            debugShowCheckedModeBanner: false,
+
+            home: FlutterTrips()
+        ),
+        bloc: UserBloc()
     );
   }
 }

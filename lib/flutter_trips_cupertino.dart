@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:fluttertrips/home_trip.dart';
-import 'package:fluttertrips/profile_trips.dart';
-import 'package:fluttertrips/search_trips.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/Place/ui/screens/home_trip.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/User/ui/screens/profile_trips.dart';
+import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/Place/ui/screens/search_trips.dart';
 
 class FlutterTripsCupertino extends StatelessWidget{
   @override
