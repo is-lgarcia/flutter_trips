@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertrips/User/bloc/bloc_user.dart';
+import 'package:fluttertrips/User/ui/screens/signin_screen.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 import 'flutter_trips.dart';
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
             title: 'My Trips',
             debugShowCheckedModeBanner: false,
 
-            home: FlutterTrips()
+            //home: FlutterTrips()
+          home: SignInScreen(),
         ),
         bloc: UserBloc()
     );
