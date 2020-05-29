@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "743130483952",
+    "firebase_url": "https://tripsflutter-lgarcia.firebaseio.com",
+    "project_id": "tripsflutter-lgarcia",
+    "storage_bucket": "tripsflutter-lgarcia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743130483952:android:30e1ee0d3095ce17d90635",
+        "android_client_info": {
+          "package_name": "com.luisg.fluttertrips"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743130483952-lqurfbkd53dic90tm7ibqiet0rjnblal.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.luisg.fluttertrips",
+            "certificate_hash": "73be4c55f87a87ffa016623dba3a424cd2f8cae4"
+          }
+        },
+        {
+          "client_id": "743130483952-2u1bi8rcmb24hrmqskgk6nm3n4g9eia5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMgfiUuLDkBbv9xgyu1nyCV1t1d8oaLmE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743130483952-2u1bi8rcmb24hrmqskgk6nm3n4g9eia5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
