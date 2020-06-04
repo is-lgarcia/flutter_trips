@@ -28,6 +28,7 @@ class _FloatingActionButtonGreen extends State<FloatingActionButtonGreen>{
     return FloatingActionButton(
       backgroundColor: Color(0xFF11da53),
       mini: true,
+      heroTag: null,
       tooltip: "Fav",
       onPressed: onPressedFav,
       child: Icon(

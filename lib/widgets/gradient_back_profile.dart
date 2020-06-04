@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class GradientBackProfile extends StatelessWidget{
 
-  String title = "Popular";
+  String title;
 
   GradientBackProfile(this.title);
 

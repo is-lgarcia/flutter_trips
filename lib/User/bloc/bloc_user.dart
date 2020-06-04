@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertrips/User/model/model_user.dart';
 import 'package:fluttertrips/User/repository/auth_repository.dart';
+import 'package:fluttertrips/User/repository/cloud_firestore_repository.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class UserBloc implements Bloc{
@@ -22,6 +24,11 @@ class UserBloc implements Bloc{
   SignOut(){
     _autRepository.signOut();
   }
+
+  //3.Registrar Usuario en nuestra Base de Datos
+  final _cloudFirestoreRepository = CloudFirestoreRepository();
+  void updateUserData(User user) => _cloudFirestoreRepository
+      .updateUserDataFirestore(user);
 
   @override
   void dispose() {

@@ -25,13 +25,19 @@ class GradienteBack extends StatelessWidget{
           tileMode: TileMode.clamp
         )
       ),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 30.0,
-          fontFamily: "Lato",
-          fontWeight: FontWeight.bold
+      child: Container(
+        margin: EdgeInsets.only(
+          top: 20.0,
+          left: 20.0
+        ),
+        child: Text(
+          title,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 30.0,
+            fontFamily: "Lato",
+            fontWeight: FontWeight.bold
+          ),
         ),
       ),
       alignment: Alignment(-0.9, -0.6),
