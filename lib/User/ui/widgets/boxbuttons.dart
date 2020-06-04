@@ -1,15 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/User/ui/widgets/button_add_fab.dart';
-import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/User/ui/widgets/button_mark_fab.dart';
-import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/User/ui/widgets/button_message_fab.dart';
-import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/User/ui/widgets/button_profile_fab.dart';
-import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/User/ui/widgets/button_tv_fab.dart';
+import 'package:fluttertrips/User/bloc/bloc_user.dart';
+import 'package:fluttertrips/widgets/circle_button.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class BoxButtons extends StatelessWidget{
+
+  UserBloc userBloc;
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
+    userBloc = BlocProvider.of(context);
+
     return Container(
       margin: EdgeInsets.only(
         top: 220.0,
@@ -17,11 +20,17 @@ class BoxButtons extends StatelessWidget{
       ),
       child: Row(
         children: <Widget>[
-          ButtonMarkFab(),
-          ButtonTVFab(),
-          ButtonAddFab(),
-          ButtonMessageFab(),
-          ButtonProfileFab(),
+          //cambiar comtraseña
+          CircleButton(
+                  () => {} , true, Icons.https, 20.0, Color.fromRGBO(255, 255, 255, 0.6)),
+          //toma fotografía
+          CircleButton(
+                  () => {} , false, Icons.camera_alt, 40.0, Color.fromRGBO(255, 255, 255, 1)),
+          //Salir de sesión
+          CircleButton(
+                  () => {
+                    userBloc.SignOut()
+                  } , true, Icons.exit_to_app, 20.0, Color.fromRGBO(255, 255, 255, 0.6))
         ],
       ),
     );

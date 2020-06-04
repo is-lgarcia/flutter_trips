@@ -89,6 +89,7 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               ButtonGreen(text: "Iniciar Sesión con Gmail",
                 onPressed: (){
+                userBloc.SignOut();
                 //Logica donde hacemos el signin
                 userBloc.signIn().then((value) => print("El usuario es ${value.displayName}"));
               },
