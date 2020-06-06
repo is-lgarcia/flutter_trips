@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/luis1/Documents/AplicacionesFlutter/flutter_trips/lib/widgets/floating_action_button_green.dart';
+import 'package:fluttertrips/widgets/floating_action_button_green.dart';
 
 class CardImageProfile extends StatelessWidget{
 
@@ -117,7 +117,7 @@ class CardImageProfile extends StatelessWidget{
           alignment: Alignment(0.9,1.2),
           children: <Widget>[
             cardContent,
-            FloatingActionButtonGreen(),
+            FloatingActionButtonGreen(iconData: Icons.favorite_border, onPressed: null,),
           ],
         )
       ],

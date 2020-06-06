@@ -7,9 +7,11 @@ import 'package:fluttertrips/Place/ui/widgets/card_image.dart';
 import 'package:fluttertrips/Place/ui/widgets/title_input_location.dart';
 import 'package:fluttertrips/User/bloc/bloc_user.dart';
 import 'package:fluttertrips/widgets/button_purple.dart';
+import 'package:fluttertrips/widgets/floating_action_button_green.dart';
 import 'package:fluttertrips/widgets/gradient_back.dart';
 import 'package:fluttertrips/widgets/text_input.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AddPlaceScreen extends StatefulWidget {
   File image;
@@ -21,6 +23,19 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
+
+  File _image;
+  PickedFile _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  Future getImage() async {
+    _imageFile = await _picker.getImage(source: ImageSource.camera);
+
+    setState(() {
+      _image = File(_imageFile.path);
+    });
+  }
+
   final _controllerTitlePlace = TextEditingController();
   final _controllerDescriptionPlace = TextEditingController();
 
@@ -57,16 +72,40 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             child: ListView(
               children: <Widget>[
                 Container(
-                  margin: EdgeInsets.only(bottom: 20.0),
                   alignment: Alignment.center,
-                  child: CardImageWithFabIcon(
-                      pathImage: "assets/images/beach.jpg",
-                      width: 350.0,
-                      height: 250.0,
-                      onPressFabIcon: null,
-                      iconData: Icons.camera_alt,
-                      left: 0.0),
-                  //FOTO
+                  child: Stack(
+                    alignment: Alignment(0.9, 1.0),
+                    children: <Widget>[
+                      Container(
+                        height: 250.0,
+                        width: 350.0,
+                        margin: EdgeInsets.only(bottom: 20.0),
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                            color: Colors.white,
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  blurRadius: 15.0,
+                                  offset: Offset(0.0, 7.0)
+                              )
+                            ]
+                        ),
+                        child: _image == null ? Text("No hay imagen Seleccionada", textAlign: TextAlign.center,) : Image.file(_image)),
+                      FloatingActionButtonGreen(
+                          iconData: Icons.add_a_photo,
+                          onPressed: getImage)
+                        ],
+                    /*child: CardImageWithFabIcon(
+                        pathImage: "assets/images/beach.jpg",
+                        width: 350.0,
+                        height: 250.0,
+                        onPressFabIcon: null,
+                        iconData: Icons.camera_alt,
+                        left: 0.0),*/
+                    //FOTO
+                  ),
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 20.0),

@@ -56,5 +56,12 @@
     	</dict>
     </array>
 
+    <key>NSCameraUsageDescription</key>
+     <string>Trips quiere tomar una foto. ¿Podemos usar tucámara?</string>
+     <key>NSPhotoLibraryUsageDescription</key>
+     <string>Trips quiere tomar una foto. ¿Podemos usar tucámara?</string>
+     <key>NSMicrophoneUsageDescription</key>
+     <string>Trips quiere tomar una foto. ¿Podemos usar tucámara?</string>
+
 </dict>
 </plist>

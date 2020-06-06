@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:fluttertrips/Place/ui/screens/add_place_screen.dart';
 import 'package:fluttertrips/User/bloc/bloc_user.dart';
 import 'package:fluttertrips/widgets/circle_button.dart';
 import 'package:generic_bloc_provider/generic_bloc_provider.dart';
+import 'package:image_picker/image_picker.dart';
 
 class BoxButtons extends StatelessWidget{
 
@@ -29,8 +31,7 @@ class BoxButtons extends StatelessWidget{
           //toma fotografía
           CircleButton(
                   (){
-                    File image;
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext contexr) => AddPlaceScreen(image: image)));
+                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext contexr) => AddPlaceScreen()));
                   } , false, Icons.camera_alt, 40.0, Color.fromRGBO(255, 255, 255, 1)),
           //Salir de sesión
           CircleButton(
