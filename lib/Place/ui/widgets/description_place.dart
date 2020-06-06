@@ -108,7 +108,7 @@ class DescriptionPlace extends StatelessWidget{
         children: <Widget>[
           title_starts,
           description_place,
-          ButtonPurple("Navigate")
+          ButtonPurple(buttonText: "Nagevar", onPressed: null)
         ],
       ),
     );
