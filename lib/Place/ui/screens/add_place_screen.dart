@@ -145,7 +145,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                             String path =
                                 "$uid/${DateTime.now().toString()}.jpg";
                             String urlImage;
-
                             //subiendo
                             userBloc.uploadFile(path, _image).then((value) {
                               value.onComplete.then((value) => value.ref
@@ -153,22 +152,20 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                                   .then((value) {
                                     print("URLIMAGE: $value");
                                     urlImage = value;
+                                    //ColudFirestore
+                                    //Place title, description, url, userOwner, likes
+                                    userBloc
+                                        .updatePlaceData(Place(
+                                      name: _controllerTitlePlace.text,
+                                      description: _controllerDescriptionPlace.text,
+                                      likes: 0,
+                                      urlImage: urlImage,
+                                    ))
+                                        .whenComplete(() {
+                                      print("TERMINO...");
+                                      Navigator.pop(context);
+                                    });
                               }));
-
-                              //ColudFirestore
-                              //Place title, description, url, userOwner, likes
-                              userBloc
-                                  .updatePlaceData(Place(
-                                  name: _controllerTitlePlace.text,
-                                  description: _controllerDescriptionPlace.text,
-                                  urlImage: urlImage,
-                                  userOwner: null,
-                                  likes: 0))
-                                  .whenComplete(() {
-                                print("TERMINO");
-                                Navigator.pop(context);
-                              });
-
                             });
                           }
                         });

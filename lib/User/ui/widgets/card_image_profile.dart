@@ -1,15 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertrips/Place/model/place.dart';
 import 'package:fluttertrips/widgets/floating_action_button_green.dart';
 
 class CardImageProfile extends StatelessWidget{
 
-  String pathImage = "assets/images/beach.jpg";
-  String title = "Mountain Range";
-  String description = "Es un lugar muy muy muy bonito con una vegetación muy varidad donde te puedes...";
-  String steps = "Steps 123,456,789";
+  final Place place;
 
-  CardImageProfile(this.pathImage, this.title, this.description, this.steps);
+  CardImageProfile(this.place);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +23,7 @@ class CardImageProfile extends StatelessWidget{
       decoration: BoxDecoration(
           image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(pathImage)
+              image: NetworkImage(place.urlImage)
           ),
           borderRadius: BorderRadius.all(Radius.circular(10.0)),
           shape: BoxShape.rectangle,
@@ -64,7 +62,7 @@ class CardImageProfile extends StatelessWidget{
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Text(
-              title,
+              place.name,
               style: TextStyle(
                 fontFamily: "Lato",
                 fontWeight: FontWeight.bold,
@@ -79,13 +77,14 @@ class CardImageProfile extends StatelessWidget{
               right: 10.0
             ),
             child: Text(
-              description,
+              place.description,
               style: TextStyle(
                   fontFamily: "Lato",
-                  fontSize: 11.0,
+                  fontSize: 9.0,
                   color: Colors.black38
               ),
               textAlign: TextAlign.justify,
+              overflow: TextOverflow.fade,
             ),
           ),
           Padding(
@@ -95,7 +94,7 @@ class CardImageProfile extends StatelessWidget{
                 right: 10.0
             ),
             child: Text(
-              steps,
+              "Likes ${place.likes.toString()}",
               style: TextStyle(
                   fontFamily: "Lato",
                   fontSize: 13.0,
