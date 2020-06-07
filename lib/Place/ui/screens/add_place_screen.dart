@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertrips/Place/model/place.dart';
-import 'package:fluttertrips/Place/ui/widgets/card_image.dart';
 import 'package:fluttertrips/Place/ui/widgets/title_input_location.dart';
 import 'package:fluttertrips/User/bloc/bloc_user.dart';
 import 'package:fluttertrips/widgets/button_purple.dart';
@@ -23,7 +22,6 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
-
   File _image;
   PickedFile _imageFile;
   final ImagePicker _picker = ImagePicker();
@@ -77,26 +75,29 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     alignment: Alignment(0.9, 1.0),
                     children: <Widget>[
                       Container(
-                        height: 250.0,
-                        width: 350.0,
-                        margin: EdgeInsets.only(bottom: 20.0),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                            color: Colors.white,
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                  color: Colors.black12,
-                                  blurRadius: 15.0,
-                                  offset: Offset(0.0, 7.0)
-                              )
-                            ]
-                        ),
-                        child: _image == null ? Text("No hay imagen Seleccionada", textAlign: TextAlign.center,) : Image.file(_image)),
+                          height: 250.0,
+                          width: 350.0,
+                          margin: EdgeInsets.only(bottom: 20.0),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10.0)),
+                              color: Colors.white,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 15.0,
+                                    offset: Offset(0.0, 7.0))
+                              ]),
+                          child: _image == null
+                              ? Text(
+                                  "No hay imagen Seleccionada",
+                                  textAlign: TextAlign.center,
+                                )
+                              : Image.file(_image)),
                       FloatingActionButtonGreen(
-                          iconData: Icons.add_a_photo,
-                          onPressed: getImage)
-                        ],
+                          iconData: Icons.add_a_photo, onPressed: getImage)
+                    ],
                     /*child: CardImageWithFabIcon(
                         pathImage: "assets/images/beach.jpg",
                         width: 350.0,
@@ -135,18 +136,41 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       onPressed: () {
                         //FireStorage
                         //UrlImage
-                        //ColudFirestore
-                        //Place title, description, url, userOwner, likes
-                        userBloc
-                            .updatePlaceData(Place(
-                                name: _controllerTitlePlace.text,
-                                description: _controllerDescriptionPlace.text,
-                                urlImage: null,
-                                userOwner: null,
-                                likes: 0))
-                            .whenComplete(() {
-                          print("TERMINO");
-                          Navigator.pop(context);
+                        //ID del usuario logueado Actualmente,
+
+                        userBloc.currentUser.then((value) {
+                          String uid;
+                          if (value != null) {
+                            uid = value.uid;
+                            String path =
+                                "$uid/${DateTime.now().toString()}.jpg";
+                            String urlImage;
+
+                            //subiendo
+                            userBloc.uploadFile(path, _image).then((value) {
+                              value.onComplete.then((value) => value.ref
+                                  .getDownloadURL()
+                                  .then((value) {
+                                    print("URLIMAGE: $value");
+                                    urlImage = value;
+                              }));
+
+                              //ColudFirestore
+                              //Place title, description, url, userOwner, likes
+                              userBloc
+                                  .updatePlaceData(Place(
+                                  name: _controllerTitlePlace.text,
+                                  description: _controllerDescriptionPlace.text,
+                                  urlImage: urlImage,
+                                  userOwner: null,
+                                  likes: 0))
+                                  .whenComplete(() {
+                                print("TERMINO");
+                                Navigator.pop(context);
+                              });
+
+                            });
+                          }
                         });
                       }),
                 )
