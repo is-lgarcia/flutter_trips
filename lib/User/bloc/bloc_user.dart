@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:fluttertrips/Place/model/place.dart';
 import 'package:fluttertrips/Place/repository/firebase_storage_repository.dart';
+import 'package:fluttertrips/Place/ui/widgets/card_image.dart';
 import 'package:fluttertrips/User/model/model_user.dart';
 import 'package:fluttertrips/User/repository/auth_repository.dart';
 import 'package:fluttertrips/User/repository/cloud_firestore_api.dart';
@@ -57,9 +58,14 @@ class UserBloc implements Bloc {
       _storageRepository.uploadFile(path, image);
 
   //Obtener los lugares
-  List<CardImageProfile> buildPlaces(
+
+  List<CardImageWithFabIcon> buildPlaces(
+          List<DocumentSnapshot> listPlacesSnapshot) =>
+      _cloudFirestoreRepository.buildPlaces(listPlacesSnapshot);
+
+  List<CardImageProfile> buildMyPlaces(
           List<DocumentSnapshot> placesListSnapshot) =>
-      _cloudFirestoreRepository.buildPlaces(placesListSnapshot);
+      _cloudFirestoreRepository.buildMyPlaces(placesListSnapshot);
 
   Stream<QuerySnapshot> myPlacesListStream(String uid) => Firestore.instance
       .collection(CloudFirestoreAPI().PLACES)
@@ -68,10 +74,9 @@ class UserBloc implements Bloc {
               Firestore.instance.document("/${CloudFirestoreAPI().USERS}/$uid"))
       .snapshots();
 
-
-  //Validando el Query
-  void printStream(String uid) => print(Firestore.instance.document("/${CloudFirestoreAPI().USERS}/$uid").path);
-
+  //Validando el Query MyPlaceList
+  void printStream(String uid) => print(
+      Firestore.instance.document("/${CloudFirestoreAPI().USERS}/$uid").path);
 
   @override
   void dispose() {

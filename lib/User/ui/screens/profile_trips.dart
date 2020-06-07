@@ -59,7 +59,7 @@ class ProfileTrips extends StatelessWidget {
                         case ConnectionState.active:
                         case ConnectionState.done:
                           return ListView(
-                            children: userBloc.buildPlaces(snapshot.data.documents),
+                            children: userBloc.buildMyPlaces(snapshot.data.documents),
                           );
                       }
                     })
