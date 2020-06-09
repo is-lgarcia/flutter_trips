@@ -36,7 +36,12 @@ class FlutterTripsCupertino extends StatelessWidget{
           switch(index){
             case 0:
               return CupertinoTabView(
-                builder: (BuildContext context) => Hometrips(),
+                builder: (BuildContext context) {
+                  return BlocProvider(
+                      child: Hometrips(),
+                      bloc: UserBloc()
+                  );
+                },
               );
               break;
             case 1:

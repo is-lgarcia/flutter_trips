@@ -9,6 +9,7 @@ class CardImageWithFabIcon extends StatelessWidget {
   final String pathImage;
   final VoidCallback onPressFabIcon;
   final IconData iconData;
+  bool internet = true;
 
   CardImageWithFabIcon({
     Key key,
@@ -17,6 +18,7 @@ class CardImageWithFabIcon extends StatelessWidget {
     @required this.height,
     @required this.onPressFabIcon,
     @required this.iconData,
+    this.internet,
     this.left
   });
 

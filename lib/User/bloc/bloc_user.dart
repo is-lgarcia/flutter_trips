@@ -59,9 +59,7 @@ class UserBloc implements Bloc {
 
   //Obtener los lugares
 
-  List<CardImageWithFabIcon> buildPlaces(
-          List<DocumentSnapshot> listPlacesSnapshot) =>
-      _cloudFirestoreRepository.buildPlaces(listPlacesSnapshot);
+  List buildPlaces(List placesListSnapshot, User user) => _cloudFirestoreRepository.buildPlaces(placesListSnapshot, user);
 
   List<CardImageProfile> buildMyPlaces(
           List<DocumentSnapshot> placesListSnapshot) =>
@@ -73,6 +71,8 @@ class UserBloc implements Bloc {
           isEqualTo:
               Firestore.instance.document("/${CloudFirestoreAPI().USERS}/$uid"))
       .snapshots();
+
+  Future likePlace(Place place, String uid) => _cloudFirestoreRepository.likePlace(place,uid);
 
   //Validando el Query MyPlaceList
   void printStream(String uid) => print(

@@ -16,6 +16,7 @@ class CloudFirestoreRepository {
   List<CardImageProfile> buildMyPlaces(
       List<DocumentSnapshot> placesListSnapshot) => _cloudFirestoreAPi.buildMyPlaces(placesListSnapshot);
 
-  List<CardImageWithFabIcon> buildPlaces(
-      List<DocumentSnapshot> listPlacesSnapshot) => _cloudFirestoreAPi.buildPlaces(listPlacesSnapshot);
+  List buildPlaces(List placesListSnapshot, User user) => _cloudFirestoreAPi.buildPlaces(placesListSnapshot, user);
+
+  Future likePlace(Place place, String uid) => _cloudFirestoreAPi.likePlace(place,uid);
 }

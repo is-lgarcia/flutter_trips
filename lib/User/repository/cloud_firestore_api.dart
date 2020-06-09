@@ -48,8 +48,25 @@ class CloudFirestoreAPI {
     });
   }
 
+  List buildPlaces(List placesListSnapshot, User user) {
+    List<Place> places = List<Place>();
 
-
+    placesListSnapshot.forEach((p)  {
+      Place place = Place(id: p.documentID, name: p.data["name"], description: p.data["description"],
+          urlImage: p.data["urlImage"],likes: p.data["likes"]
+      );
+      List usersLikedRefs =  p.data["usersLiked"];
+      place.liked = false;
+      usersLikedRefs?.forEach((drUL){
+        if(user.uid == drUL.documentID){
+          place.liked = true;
+        }
+      });
+      places.add(place);
+    });
+    return places;
+  }
+/*
   List<CardImageWithFabIcon> buildPlaces(
       List<DocumentSnapshot> listPlacesSnapshot) {
     List<CardImageWithFabIcon> placesCard = List<CardImageWithFabIcon>();
@@ -59,8 +76,8 @@ class CloudFirestoreAPI {
         pathImage: element.data['urlImage'],
         width: 270.0,
         height: 210.0,
-        onPressFabIcon: (){
-
+        onPressFabIcon: () {
+          likePlaces(element.documentID);
         },
         iconData: Icons.favorite_border,
         left: 10.0,
@@ -68,7 +85,7 @@ class CloudFirestoreAPI {
     });
 
     return placesCard;
-  }
+  }*/
 
   List<CardImageProfile> buildMyPlaces(
       List<DocumentSnapshot> placesListSnapshot) {
@@ -78,10 +95,36 @@ class CloudFirestoreAPI {
           name: element.data['name'],
           description: element.data['description'],
           urlImage: element.data['urlImage'],
-          likes: element.data['likes'])
-      ));
+          likes: element.data['likes'])));
     });
 
     return imageProfile;
+  }
+
+  Future likePlaces(String idPlaces) async {
+    await _db.collection(PLACES).document(idPlaces).get().then((value) {
+      int likes = value.data["likes"];
+
+      _db.collection(PLACES).document(idPlaces).updateData({
+        'likes': likes+1
+      });
+    });
+  }
+
+  Future likePlace(Place place, String uid) async {
+    await _db.collection(PLACES).document(place.id).get()
+        .then((DocumentSnapshot ds){
+      int likes = ds.data["likes"];
+
+      _db.collection(PLACES).document(place.id)
+          .updateData({
+        'likes': place.liked?likes+1:likes-1,
+        'usersLiked':
+        place.liked?
+        FieldValue.arrayUnion([_db.document("${USERS}/${uid}")]):
+        FieldValue.arrayRemove([_db.document("${USERS}/${uid}")])
+      });
+
+    });
   }
 }
