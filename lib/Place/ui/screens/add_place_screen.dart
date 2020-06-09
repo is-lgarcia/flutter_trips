@@ -27,7 +27,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
   final ImagePicker _picker = ImagePicker();
 
   Future getImage() async {
-    _imageFile = await _picker.getImage(source: ImageSource.camera);
+    _imageFile = await _picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       _image = File(_imageFile.path);

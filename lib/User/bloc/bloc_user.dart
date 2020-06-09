@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -78,8 +79,13 @@ class UserBloc implements Bloc {
   void printStream(String uid) => print(
       Firestore.instance.document("/${CloudFirestoreAPI().USERS}/$uid").path);
 
+  //Colocando Datos en el Home_Trip
+  StreamController placeSelectedStreamController =  StreamController();
+  Stream get placeSelectedStream => placeSelectedStreamController.stream;
+  StreamSink get placeSelectedSink =>  placeSelectedStreamController.sink;
+
   @override
   void dispose() {
-    // TODO: implement dispose
+    placeSelectedStreamController.close();
   }
 }

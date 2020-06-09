@@ -1,8 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertrips/User/bloc/bloc_user.dart';
 import 'package:fluttertrips/User/model/model_user.dart';
-import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class InfoProfile extends StatelessWidget {
 
@@ -24,7 +23,7 @@ class InfoProfile extends StatelessWidget {
           image: DecorationImage(
             fit: BoxFit.cover,
             //image: AssetImage(user.photoUrl),
-            image: NetworkImage(user.photoUrl)
+            image: CachedNetworkImageProvider(user.photoUrl)
           )),
     );
 

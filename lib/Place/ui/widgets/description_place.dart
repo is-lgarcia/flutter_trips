@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertrips/Place/model/place.dart';
+import 'package:fluttertrips/User/bloc/bloc_user.dart';
 import 'package:fluttertrips/widgets/button_purple.dart';
+import 'package:generic_bloc_provider/generic_bloc_provider.dart';
 
 class DescriptionPlace extends StatelessWidget{
 
@@ -12,8 +15,110 @@ class DescriptionPlace extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    UserBloc userBloc = BlocProvider.of(context);
 
-    //Widget para Puntuaciones de 0.5
+    Widget titleStars(Place place){
+      return Column (
+        children: [
+          Container (
+            margin: EdgeInsets.only(
+                top: 350.0,
+                left: 20.0,
+                right: 20.0
+            ),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Text(
+                place.name,
+                style: TextStyle(
+                    fontFamily: "Lato",
+                    fontSize: 28.0,
+                    fontWeight: FontWeight.w900
+                ),
+                textAlign: TextAlign.center,
+                softWrap: true,
+              ),
+            ),
+          ),
+          Container (
+            margin: EdgeInsets.only(
+              top: 10.0,
+            ),
+            child: Text(
+              "Hearts: ${place.likes}",
+              style: TextStyle(
+                  fontFamily: "Lato",
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.w900,
+                  color: Colors.amber
+              ),
+              textAlign: TextAlign.left,
+            ),
+          ),
+        ],
+      );
+    }
+
+    Widget descriptionWidget(String descriptionPlace){
+      return Container(
+        margin: new EdgeInsets.only(
+            top: 20.0,
+            left: 20.0,
+            right: 20.0
+        ),
+        child: new Text(
+          descriptionPlace,
+          style: const TextStyle(
+              fontFamily: "Lato",
+              fontSize: 16.0,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF56575a)
+          ),
+        ),
+      );
+    }
+
+    return StreamBuilder(
+        stream: userBloc.placeSelectedStream,
+        // ignore: missing_return
+        builder: (BuildContext context, AsyncSnapshot snapshot){
+          if (snapshot.hasData) {
+            Place place = snapshot.data;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                titleStars(place),
+                descriptionWidget(place.description),
+                ButtonPurple(buttonText: "Navigate", onPressed: (){})
+              ],
+            );
+          }else {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container (
+                  margin: EdgeInsets.only(
+                      top: 400.0,
+                      left: 20.0,
+                      right: 20.0
+                  ),
+                  child: Text(
+                    "Selecciona un lugar",
+                    style: TextStyle(
+                        fontFamily: "Lato",
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.w900
+                    ),
+                    textAlign: TextAlign.left,
+                  ),
+                )
+              ],
+            );
+          }
+        });
+
+
+    /*//Widget para Puntuaciones de 0.5
     final start_half = Container(
         margin: EdgeInsets.only(
             top: 353.0,
@@ -112,8 +217,8 @@ class DescriptionPlace extends StatelessWidget{
         ],
       ),
     );
-
-    return title_start_description;
+*/
+    //return title_start_description;
   }
 
 }

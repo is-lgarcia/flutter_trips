@@ -107,6 +107,17 @@ class CardImageProfile extends StatelessWidget{
       ),
     );
 
+
+
+    void setLiked(Place place) {
+      setState(() {
+        place.liked = !place.liked;
+        userBloc.likePlace(place, widget.user.uid);
+        place.likes = place.liked?place.likes+1:place.likes-1;
+        userBloc.placeSelectedSink.add(place);
+      });
+    }
+
     // TODO: implement build
     return Stack(
       //alignment: Alignment(0.9,1.1),
@@ -116,11 +127,15 @@ class CardImageProfile extends StatelessWidget{
           alignment: Alignment(0.9,1.2),
           children: <Widget>[
             cardContent,
-            FloatingActionButtonGreen(iconData: Icons.favorite_border, onPressed: null,),
+            FloatingActionButtonGreen(iconData: Icons.favorite_border, onPressed: (){
+
+            }),
           ],
         )
       ],
     );
+
+
   }
 
 }
